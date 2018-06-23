@@ -7,8 +7,11 @@ import test.three.stripes.page.store.home.HomePage;
 
 public class StoreTest extends BaseTest {
 
+
     @Test
     public void testComment(){
+
+
         new HomePage(driver)
                 .scrollToFooter()
                 .gotoSamplePage()
