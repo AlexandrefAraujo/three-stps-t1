@@ -1,23 +1,24 @@
+package test.three.stripes.base;
+
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 import test.three.stripes.webdriver.WebDriverManager;
 
 
-public class Test1 {
+public class BaseTest {
 
+    private final String url = "http://store.demoqa.com";
     private WebDriverManager webDriverManager;
 
-    WebDriver driver;
+    public WebDriver driver;
 
 
     @BeforeMethod
     public void setUp(){
         webDriverManager = new WebDriverManager();
         driver = webDriverManager.getDriver();
-
+        driver.navigate().to(url);
     }
 
     @AfterMethod
@@ -25,8 +26,4 @@ public class Test1 {
         webDriverManager.quitDriver();
     }
 
-    @Test
-    public void bla(){
-        System.out.println("asdfgh");
-    }
 }
