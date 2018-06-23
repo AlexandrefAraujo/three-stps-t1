@@ -5,8 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 enum WebDriverFactory implements WebDriverCreator{
 
-    FIREFOX(new FirefoxDriverCreator());
-
+    FIREFOX(new FirefoxDriverCreator()),
+    CHROME(new ChromeDriverCreator()),
+    IE(new IEDriverCreator());
 
     private WebDriverCreator driver;
 
