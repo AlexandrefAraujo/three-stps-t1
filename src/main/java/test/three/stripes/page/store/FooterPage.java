@@ -5,8 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import test.three.stripes.base.BasePage;
 import test.three.stripes.page.store.sample.SamplePage;
+
+import static test.three.stripes.log.ExtentReportLog.logger;
+
 /**
- * This class represents the static footer in the web page and should be used to just with elements in the footer.
+ * This footer is the same for all pages
  */
 public class FooterPage extends BasePage {
 
@@ -19,6 +22,7 @@ public class FooterPage extends BasePage {
 
     public SamplePage gotoSamplePage(){
         samplePageLink.click();
+        logger.info("clicking on Sample Page link");
         return new SamplePage(driver);
     }
 }

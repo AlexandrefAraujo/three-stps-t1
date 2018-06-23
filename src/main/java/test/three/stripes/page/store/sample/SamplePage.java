@@ -1,5 +1,8 @@
 package test.three.stripes.page.store.sample;
 
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +16,7 @@ import java.util.Optional;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static test.three.stripes.log.ExtentReportLog.logger;
 
 public class SamplePage extends BasePage {
 
@@ -68,6 +72,7 @@ public class SamplePage extends BasePage {
         assertTrue(commentContainerLink.getAttribute("href").contains(comment.getWebSite()),
                 "The user url in the comment is not the same sent");
         assertEquals(commentContainerText.getText().trim(), comment.getComment());
+        logger.log(Status.PASS, MarkupHelper.createLabel("Comment succsessfully posted", ExtentColor.GREEN));
 
         return this;
     }
@@ -78,7 +83,7 @@ public class SamplePage extends BasePage {
         nameField.sendKeys(c.getName());
         emailField.sendKeys(c.getEmail());
         webSiteField.sendKeys(c.getWebSite());
-
+        logger.info("filling the form with data: "+c.toString());
         postCommentButton.click();
     }
 

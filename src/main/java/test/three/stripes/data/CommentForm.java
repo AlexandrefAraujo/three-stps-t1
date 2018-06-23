@@ -29,4 +29,21 @@ public class CommentForm{
     public String getComment() {
         return comment;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("\nName: ");
+        stringBuilder.append(name);
+        stringBuilder.append("/");
+        stringBuilder.append("Email: ");
+        stringBuilder.append(email);
+        stringBuilder.append("/");
+        stringBuilder.append("Website: ");
+        stringBuilder.append(webSite);
+        stringBuilder.append("/");
+        stringBuilder.append("Comment: ");
+        stringBuilder.append(comment);
+
+        return stringBuilder.toString();
+    }
 }

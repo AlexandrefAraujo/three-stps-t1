@@ -5,7 +5,7 @@ import test.three.stripes.base.BasePage;
 //TODO  - ELEMENTS
 
 /**
- * This class represents the static header in the web page and should be used to just with elements in the header.
+ * This header is the same for all pages
  */
 public class HeaderPage extends BasePage {
 

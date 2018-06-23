@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
 
+import static test.three.stripes.log.ExtentReportLog.logger;
+
 public class BasePage {
 
     protected WebDriver driver;
@@ -17,6 +19,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        logger.info("Going to "+this.getClass().getSimpleName());
         this.driver = driver;
         this.actions = new Actions(driver);
         this.wait = new FluentWait<>(driver)
