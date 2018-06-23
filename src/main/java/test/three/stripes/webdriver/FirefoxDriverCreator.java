@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 class FirefoxDriverCreator implements WebDriverCreator {
 
 
-    private WebDriver driver;
+    private static WebDriver driver;
 
     @Override
     public WebDriver getDriver() {
