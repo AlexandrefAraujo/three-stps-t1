@@ -1,11 +1,15 @@
 package test.three.stripes.page.store.sample;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import test.three.stripes.base.BasePage;
 import test.three.stripes.data.CommentForm;
+
+import java.util.List;
+import java.util.Optional;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -18,14 +22,7 @@ public class SamplePage extends BasePage {
     }
 
     @FindBy(css = "div[class='comment_container group']")
-    WebElement commentContainer;
-
-    @FindBy(css = "cite[class=fn] a")
-    WebElement commentContainerLink;
-
-    @FindBy(css = "div[class=comment-body] p")
-    WebElement commentContainerText;
-
+    List<WebElement> commentContainer;
 
 
     @FindBy(css = "#comment")
@@ -59,7 +56,15 @@ public class SamplePage extends BasePage {
 
     public SamplePage verifyCommentPosted(CommentForm comment){
 
-        assertTrue(commentContainer.isDisplayed(),"Comment was successfully snet, but it is not present in the page");
+        Optional<WebElement> lastComment = commentContainer.stream().reduce((f, s) -> s);
+
+        assertTrue(lastComment.isPresent(),"Comment was successfully snet, but it is not present in the page");
+
+
+        WebElement commentContainerLink = lastComment.get().findElement(By.cssSelector("cite[class=fn] a"));
+        WebElement commentContainerText = lastComment.get().findElement(By.cssSelector("div[class=comment-body] p"));
+
+
         assertTrue(commentContainerLink.getAttribute("href").contains(comment.getWebSite()),
                 "The user url in the comment is not the same sent");
         assertEquals(commentContainerText.getText().trim(), comment.getComment());
